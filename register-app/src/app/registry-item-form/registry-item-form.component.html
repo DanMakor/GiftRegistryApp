@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-md-5">
+    <h2 class="mt-5">Registry Items</h2>
+    <div class="form-group">
+      <label for="registryItemTitle">Title</label>
+      <input name="title" type="text" [(ngModel)]="registryItem.title" class="form-control" id="registryItemTitle" placeholder="Enter registry item title">
+    </div>
+    <div class="form-group">
+        <label for="registryItemDescription">Description</label>
+        <input name="description" type="text" [(ngModel)]="registryItem.description" class="form-control" id="registryItemDescription" placeholder="Enter registry item description">
+    </div>
+    <div class="form-group">
+        <label for="registryItemPriority">Priority</label>
+        <input name="priority" type="number" [(ngModel)]="registryItem.priority" class="form-control" id="registryItemPriority" placeholder="Enter registry item priority">
+    
+    </div>
+    <div class="form-group">
+        <label for="categorySelect">Category</label>
+        <select id="categorySelect" class="form-control" [(ngModel)]="registryItem.category">
+            <option class="dropdown-item" *ngFor="let category of categories" [ngValue]="category" >{{category.title}}</option>
+        </select>
+    </div>
+    <button (click)="addRegistryItem()" class="btn btn-primary">Submit</button>
+  </div>
+  <div class="col-md-4 offset-md-1">
+    <h2 class="mt-5">Categories</h2>
+    <div class="form-group">
+      <label for="categoryTitle">Category</label>
+      <input name="categoryTitle" type="text" [(ngModel)]="category.title" class="form-control" id="categoryTitle" placeholder="Enter category title">
+    </div>
+    <button (click)="addCategory()" class="btn btn-primary">Submit</button>
+  </div>
+</div>

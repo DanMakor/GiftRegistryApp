@@ -1,0 +1,20 @@
+
+<div class="row">
+    <div class="col-md-6">
+    <h3 class="mt-4 mb-3">Login</h3>
+    <form (ngSubmit)='login()'>
+      <div class="form-group">
+          <input name="name" type="text" [(ngModel)]="credentials.name" class="form-control" id="name" placeholder="Enter your name">
+      </div>
+      <div class="form-group">
+          <input name="password" type="text" [(ngModel)]="credentials.password" class="form-control" id="password" placeholder="Enter the app password">
+      </div>
+      <div *ngIf="error" class="alert alert-danger" role="alert">{{ error }}</div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    </div>
+    <div class="col-md-5 offset-md-1 mt-4">
+      <h3 class="text-secondary">First Time?</h3>
+      <a href="/register" class="btn btn-primary">Register</a>
+    </div>
+  </div>

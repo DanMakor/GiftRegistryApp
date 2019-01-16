@@ -1,0 +1,7 @@
+<span [ngClass]="{'badge-danger': registryItem.priority === 1, 'badge-warning': registryItem.priority === 2,'badge-success': registryItem.priority === 3, 'badge-dark': registryItem.userRegistered && registryItem.userRegistered !== userDetails.name }" class="badge badge-pill mr-3">{{ registryItem.priority }}</span>
+<h5 class="mb-0">{{ registryItem.title }}</h5>
+<p class="ml-3 mb-0">{{ registryItem.description }}</p>
+<p *ngIf="registryItem.category" class="ml-3 mb-0">{{ registryItem.category.title }}</p>
+<button class="btn btn-success ml-auto" (click)="updateUserRegistered()" *ngIf="!registryItem.userRegistered">I'll get this</button>
+<button class="btn btn-danger ml-auto" (click)="updateUserRegistered()" *ngIf="registryItem.userRegistered && registryItem.userRegistered === userDetails.name">I won't get this</button>
+
