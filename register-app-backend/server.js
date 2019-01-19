@@ -11,6 +11,7 @@ import User from './models/User';
 import Category from './models/Category';
 
 const APP_KEY = "AandDRegistry";
+const API_URL = "/api"
 
 var auth = jwt({
   secret: 'ANNEKE',
@@ -58,14 +59,14 @@ router.route('/registry-items/add').post((req, res) => {
         });
 });
 
-router.route('/registry-items/update').put((req, res) => {
+router.route(API_URL + '/registry-items/update').put((req, res) => {
     console.log(req.body);
     RegistryItem.findOneAndUpdate({ _id: req.body._id}, req.body, (err, registryItem) => {
         res.json(registryItem);
     })
 });
 
-router.route('/registry-items/delete/:id').get((req, res) => {
+router.route(API_URL + '/registry-items/delete/:id').get((req, res) => {
     RegistryItem.findByIdAndRemove({_id: req.params.id}, (err, registryItem) => {
         if (err)
             res.json(err);
@@ -73,7 +74,7 @@ router.route('/registry-items/delete/:id').get((req, res) => {
             res.json('Removed successfully');
     });
 });
-router.route('/register').post((req, res) => {
+router.route(API_URL + '/register').post((req, res) => {
     var user = new User();
     user.name = req.body.name;
 
@@ -101,7 +102,7 @@ router.route('/register').post((req, res) => {
 
 })
 
-router.route('/login').post((req, res) => {
+router.route(API_URL + '/login').post((req, res) => {
     
 
     if (req.body.password !== APP_KEY) {
@@ -132,7 +133,7 @@ router.route('/login').post((req, res) => {
         })(req, res);
 })
 
-router.route('/categories/add').post((req, res) => {
+router.route(API_URL + '/categories/add').post((req, res) => {
     let category = new Category(req.body);
     category.save()
         .then(category => {
@@ -144,7 +145,7 @@ router.route('/categories/add').post((req, res) => {
         });
 });
 
-router.route('/categories').get(auth, (req, res) => {
+router.route(API_URL + '/categories').get(auth, (req, res) => {
     // If no user ID exists in the JWT return a 401
   if (!req.payload._id) {
     res.status(401).json({
@@ -163,7 +164,7 @@ router.route('/categories').get(auth, (req, res) => {
 
 //Registry Item List Actions
 
-router.route('/registry-items').get(auth, (req, res) => {
+router.route(API_URL + '/registry-items').get(auth, (req, res) => {
     // If no user ID exists in the JWT return a 401
   if (!req.payload._id) {
     res.status(401).json({
