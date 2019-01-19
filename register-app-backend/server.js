@@ -19,8 +19,15 @@ var auth = jwt({
 
 const app = express();
 export const router = express.Router();
+var whitelist = ['http://annekeanddaniels.s3-website-ap-southeast-2.amazonaws.com', '121.45.203.200']
 const corsOptions = {
-    origin: 'http://localhost:4200',
+    origin: function (origin, callback) {
+        if (whitelist.indexOf(origin) !== -1) {
+          callback(null, true)
+        } else {
+          callback(new Error('Not allowed by CORS'))
+        }
+    },
     optionsSuccessStatus: 200
 }
 

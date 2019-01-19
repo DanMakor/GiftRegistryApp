@@ -9,9 +9,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  credentials: TokenPayload = {
-    name: ''
-  }
+  credentials: TokenPayload = {}
 
   error: string; 
 

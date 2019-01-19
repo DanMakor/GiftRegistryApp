@@ -12,9 +12,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   error: string;
-  credentials: TokenPayload = {
-    name: ''
-  }
+  credentials: TokenPayload = {};
 
   constructor(private authenticationService: AuthenticationService, private router: Router) { }
 

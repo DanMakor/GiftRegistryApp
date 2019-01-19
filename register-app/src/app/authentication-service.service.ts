@@ -3,9 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { UserStoreService } from './user-store.service';
 
-const apiUrl: string = "http://localhost:4000/";
+const apiUrl: string = "http://ec2-18-219-155-51.us-east-2.compute.amazonaws.com/";
 
 export interface UserDetails {
   _id: string;
@@ -20,6 +19,7 @@ interface TokenResponse {
 
 export interface TokenPayload {
   name: string;
+  password: string;
 }
 
 @Injectable({
