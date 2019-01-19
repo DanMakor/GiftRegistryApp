@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { AuthenticationService } from './authentication-service.service';
 import { Category } from './category';
 
-const apiUrl: string = "http://ec2-18-219-155-51.us-east-2.compute.amazonaws.com/";
+const apiUrl: string = "http://ec2-52-14-82-165.us-east-2.compute.amazonaws.com/";
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
