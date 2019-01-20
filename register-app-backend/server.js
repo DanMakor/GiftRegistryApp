@@ -22,7 +22,7 @@ var auth = jwt({
 const app = express();
 export const router = express.Router();
 const corsOptions = {
-    origin: "localhost",
+    origin: "http://localhost:80",
     optionsSuccessStatus: 200
 }
 
