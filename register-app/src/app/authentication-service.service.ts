@@ -4,7 +4,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
-const apiUrl: string = "http://localhost:4000/api/";
+const apiUrl: string = "http://localhost:80/api/";
 
 export interface UserDetails {
   _id: string;
