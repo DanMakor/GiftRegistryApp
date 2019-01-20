@@ -22,7 +22,7 @@ var auth = jwt({
 const app = express();
 export const router = express.Router();
 const corsOptions = {
-    origin: "http://localhost:4200",
+    origin: "localhost",
     optionsSuccessStatus: 200
 }
 
@@ -37,7 +37,7 @@ connection.once('open', () => {
 });
 
 app.use(API_URL, router);
-app.listen(4000, () => console.log(`Express server running on port 4000`));
+app.listen(80, () => console.log(`Express server running on port 80`));
 
 router.route('/registry-items/add').post((req, res) => {
     console.log(req.body);
