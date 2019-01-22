@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { AuthenticationService } from './authentication-service.service';
 import { Category } from './category';
 
-const apiUrl: string = "http://localhost:80/api/";
+const apiUrl: string = "http://localhost:3000/api/";
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
