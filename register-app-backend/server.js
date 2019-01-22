@@ -173,6 +173,7 @@ router.route('/api/registry-items').get(auth, (req, res) => {
     });
   }
 });
+
 app.use(express.static(__dirname + '/dist'));
 app.use('/*',  function(req, res){
     res.sendFile(__dirname + '/dist/index.html');
