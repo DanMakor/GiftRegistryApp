@@ -37,7 +37,7 @@ connection.once('open', () => {
 });
 
 app.use(API_URL, router);
-app.listen(3000, () => console.log(`Express server running on port 80`));
+app.listen(3000, () => console.log(`Express server running on port 3000`));
 
 router.route('/registry-items/add').post((req, res) => {
     console.log(req.body);
