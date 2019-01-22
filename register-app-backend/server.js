@@ -71,14 +71,13 @@ router.route('/registry-items/delete/:id').get((req, res) => {
 router.route('/api/register').post((req, res) => {
     var user = new User();
     user.name = req.body.name;
-    
+
     if (req.body.password !== APP_KEY) {
         res.status(500).json("Incorrect password");
         return;
     }
 
     User.find({ name: user.name }, (err, otherUsers) => {
-        console.log(user);
         if (!otherUsers.length) {
             user.save(function(err) {
                 var token;
