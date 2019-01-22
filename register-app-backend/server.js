@@ -22,7 +22,7 @@ var auth = jwt({
 const app = express();
 export const router = express.Router();
 const corsOptions = {
-    origin: "http://ec2-52-14-82-165.us-east-2.compute.amazonaws.com",
+    origin: "http://localhost:3000",
     optionsSuccessStatus: 200
 }
 
@@ -36,10 +36,10 @@ connection.once('open', () => {
     console.log('MongoDB database connection established successfully!');
 });
 
-app.use(API_URL, router);
+app.use(router);
 app.listen(3000, () => console.log(`Express server running on port 3000`));
 
-router.route('/registry-items/add').post((req, res) => {
+router.route('api/registry-items/add').post((req, res) => {
     console.log(req.body);
     let registryItem = new RegistryItem(req.body);
     console.log(registryItem);
@@ -68,10 +68,10 @@ router.route('/registry-items/delete/:id').get((req, res) => {
             res.json('Removed successfully');
     });
 });
-router.route('/register').post((req, res) => {
+router.route('/api/register').post((req, res) => {
     var user = new User();
     user.name = req.body.name;
-
+    
     if (req.body.password !== APP_KEY) {
         res.status(500).json("Incorrect password");
         return;
@@ -158,7 +158,7 @@ router.route('/categories').get(auth, (req, res) => {
 
 //Registry Item List Actions
 
-router.route('/registry-items').get(auth, (req, res) => {
+router.route('/api/registry-items').get(auth, (req, res) => {
     // If no user ID exists in the JWT return a 401
   if (!req.payload._id) {
     res.status(401).json({
