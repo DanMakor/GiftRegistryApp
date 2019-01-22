@@ -22,7 +22,7 @@ var auth = jwt({
 const app = express();
 export const router = express.Router();
 const corsOptions = {
-    origin: "http://localhost:3000",
+    origin: "http://ec2-52-14-82-165.us-east-2.compute.amazonaws.com",
     optionsSuccessStatus: 200
 }
 
