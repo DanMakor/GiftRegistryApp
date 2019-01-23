@@ -22,7 +22,7 @@ var auth = jwt({
 const app = express();
 export const router = express.Router();
 const corsOptions = {
-    origin: "http://localhost:3000",
+    origin: "http://annekeanddaniels.s3-website-ap-southeast-2.amazonaws.com",
     optionsSuccessStatus: 200
 }
 
@@ -172,9 +172,4 @@ router.route('/api/registry-items').get(auth, (req, res) => {
             res.json(registryItems);
     });
   }
-});
-
-app.use(express.static(__dirname + '/dist'));
-app.use('/*',  function(req, res){
-    res.sendFile(__dirname + '/dist/index.html');
 });
