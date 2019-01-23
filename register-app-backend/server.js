@@ -39,7 +39,7 @@ connection.once('open', () => {
 app.use(router);
 app.listen(3000, () => console.log(`Express server running on port 3000`));
 
-router.route('api/registry-items/add').post((req, res) => {
+router.route('/api/registry-items/add').post((req, res) => {
     console.log(req.body);
     let registryItem = new RegistryItem(req.body);
     console.log(registryItem);
@@ -53,14 +53,14 @@ router.route('api/registry-items/add').post((req, res) => {
         });
 });
 
-router.route('/registry-items/update').put((req, res) => {
+router.route('/api/registry-items/update').put((req, res) => {
     console.log(req.body);
     RegistryItem.findOneAndUpdate({ _id: req.body._id}, req.body, (err, registryItem) => {
         res.json(registryItem);
     })
 });
 
-router.route('/registry-items/delete/:id').get((req, res) => {
+router.route('/api/registry-items/delete/:id').get((req, res) => {
     RegistryItem.findByIdAndRemove({_id: req.params.id}, (err, registryItem) => {
         if (err)
             res.json(err);
@@ -95,7 +95,7 @@ router.route('/api/register').post((req, res) => {
 
 })
 
-router.route('/login').post((req, res) => {
+router.route('/api/login').post((req, res) => {
     
 
     if (req.body.password !== APP_KEY) {
@@ -126,7 +126,7 @@ router.route('/login').post((req, res) => {
         })(req, res);
 })
 
-router.route('/categories/add').post((req, res) => {
+router.route('/api/categories/add').post((req, res) => {
     let category = new Category(req.body);
     category.save()
         .then(category => {
@@ -138,7 +138,7 @@ router.route('/categories/add').post((req, res) => {
         });
 });
 
-router.route('/categories').get(auth, (req, res) => {
+router.route('/api/categories').get(auth, (req, res) => {
     // If no user ID exists in the JWT return a 401
   if (!req.payload._id) {
     res.status(401).json({
