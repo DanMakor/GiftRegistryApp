@@ -40,13 +40,10 @@ app.use(router);
 app.listen(3000, () => console.log(`Express server running on port 3000`));
 
 router.route('/api/registry-items/add').post((req, res) => {
-    console.log(req.body);
     let registryItem = new RegistryItem(req.body);
-    console.log(registryItem);
     registryItem.save()
         .then(registryItem => {
             res.status(200).json({'registryItem': 'Added successfully'});
-            console.log(registryItem);
         })
         .catch(err => {
             res.status(400).send('Failed to create new record');
@@ -54,9 +51,18 @@ router.route('/api/registry-items/add').post((req, res) => {
 });
 
 router.route('/api/registry-items/update').put((req, res) => {
-    console.log(req.body);
-    RegistryItem.findOneAndUpdate({ _id: req.body._id}, req.body, (err, registryItem) => {
-        res.json(registryItem);
+    RegistryItem.findOne({ _id: req.body._id}, (err, registryItem) => {
+        if (registryItem.userRegistered) {
+            res.status(400).send('A user has already registered this item');
+            return;
+        }
+        updatedRI = Object.assign(registryItem, {userRegistered: req.body.userRegistered })
+        updatedRI.save()
+            .then(registryItem => {
+                res.status(200).json(registryItem);
+            }).catch(err => {
+                res.status(400).send('Failed to create new record');
+            })
     })
 });
 
@@ -131,7 +137,6 @@ router.route('/api/categories/add').post((req, res) => {
     category.save()
         .then(category => {
             res.status(200).json({'category': 'Added successfully'});
-            console.log(category);
         })
         .catch(err => {
             res.status(400).send('Failed to create new record');

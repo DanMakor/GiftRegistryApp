@@ -5,14 +5,15 @@ import { RegistryItemFormComponent } from './registry-item-form/registry-item-fo
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
+import { AuthguardService } from './authguard.service';
 
 const routes: Routes = [
   { path: "", redirectTo: "/register", pathMatch: "full" },
-  { path: "registryitem", component: RegistryItemFormComponent },
-  { path: "registryitemlist", component: RegistryItemListComponent },
+  { path: "registryitem", component: RegistryItemFormComponent, canActivate: [AuthguardService] },
+  { path: "registryitemlist", component: RegistryItemListComponent, canActivate: [AuthguardService] },
   { path: "register", component: RegisterComponent },
   { path: "login", component: LoginComponent },
-  { path: "logout", component: LogoutComponent }
+  { path: "logout", component: LogoutComponent, canActivate: [AuthguardService] }
 ]
 
 @NgModule({

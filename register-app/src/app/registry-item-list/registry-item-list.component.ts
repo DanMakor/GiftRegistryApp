@@ -42,7 +42,9 @@ export class RegistryItemListComponent implements OnInit {
   }
 
   userRegistered($event) {
-    this.getRegistryItems();
+    var objectToUpdate;
+    objectToUpdate = this.groupedRegistryItems.find(x => x._id === $event._id)
+    objectToUpdate.userRegistered = $event.userRegistered;
   }
 
   getUserDetails() {
