@@ -20,8 +20,9 @@ export class RegistryItemComponent implements OnInit {
   updateUserRegistered() {
     var newRegistryItem = cloneDeep(this.registryItem);
     newRegistryItem.userRegistered = this.registryItem.userRegistered ? null : this.userDetails.name;
-
+    console.log(newRegistryItem);
     this.registryItemService.updateRegistryItem(newRegistryItem).subscribe(registryItem => {
+      console.log(registryItem);
       this.userRegistered.emit(registryItem);
     })
   }

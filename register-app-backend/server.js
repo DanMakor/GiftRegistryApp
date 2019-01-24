@@ -53,16 +53,16 @@ router.route('/api/registry-items/add').post((req, res) => {
 
 router.route('/api/registry-items/update').put((req, res) => {
     RegistryItem.findOne({_id: req.body._id}, (err, registryItem) => {
-        console.log(registryItem);
         if (registryItem.userRegistered === null) {
             res.json('A user has already registered this item');
             return;
         }
-        RegistryItem.findOneAndUpdate({ _id: req.body._id}, req.body, (err, registryItem) => {
+        RegistryItem.findOneAndUpdate({ _id: req.body._id}, req.body, (err, updatedRegistryItem) => {
             if (err)
                 res.json(err)
             else
-                res.json(registryItem);
+                console.log(updatedRegistryItem);
+                res.json(updatedRegistryItem);
         })
     })
 });
