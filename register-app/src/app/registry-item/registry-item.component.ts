@@ -22,8 +22,7 @@ export class RegistryItemComponent implements OnInit {
     newRegistryItem.userRegistered = this.registryItem.userRegistered ? null : this.userDetails.name;
 
     this.registryItemService.updateRegistryItem(newRegistryItem).subscribe(registryItem => {
-      this.registryItem = registryItem;
-      this.userRegistered.emit(this.registryItem);
+      this.userRegistered.emit(registryItem);
     })
   }
 

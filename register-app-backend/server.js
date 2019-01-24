@@ -53,6 +53,7 @@ router.route('/api/registry-items/add').post((req, res) => {
 
 router.route('/api/registry-items/update').put((req, res) => {
     RegistryItem.findOne({_id: req.body._id}, (err, registryItem) => {
+        console.log(registryItem);
         if (registryItem.userRegistered) {
             res.json('A user has already registered this item');
             return;
