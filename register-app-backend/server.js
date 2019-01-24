@@ -57,11 +57,10 @@ router.route('/api/registry-items/update').put((req, res) => {
             res.json('A user has already registered this item');
             return;
         }
-        RegistryItem.findOneAndUpdate({ _id: req.body._id}, req.body, (err, updatedRegistryItem) => {
+        RegistryItem.findOneAndUpdate({ _id: req.body._id}, req.body, {new: true}, (err, updatedRegistryItem) => {
             if (err)
                 res.json(err)
             else
-                console.log(updatedRegistryItem);
                 res.json(updatedRegistryItem);
         })
     })
