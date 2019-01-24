@@ -24,7 +24,6 @@ export class RegistryItemComponent implements OnInit {
     this.registryItemService.updateRegistryItem(newRegistryItem).subscribe(registryItem => {
       this.registryItem = registryItem;
       this.userRegistered.emit(this.registryItem);
-      $(".modal").modal();
     })
   }
 

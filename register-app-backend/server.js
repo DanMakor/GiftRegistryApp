@@ -44,6 +44,7 @@ router.route('/api/registry-items/add').post((req, res) => {
     registryItem.save()
         .then(registryItem => {
             res.status(200).json({'registryItem': 'Added successfully'});
+            console.log(registryItem);
         })
         .catch(err => {
             res.status(400).send('Failed to create new record');
@@ -51,18 +52,17 @@ router.route('/api/registry-items/add').post((req, res) => {
 });
 
 router.route('/api/registry-items/update').put((req, res) => {
-    RegistryItem.findOne({ _id: req.body._id}, (err, registryItem) => {
+    RegistryItem.findOne({_id: req.body._id}, (err, registryItem) => {
         if (registryItem.userRegistered) {
-            res.status(400).send('A user has already registered this item');
+            res.json('A user has already registered this item');
             return;
         }
-        updatedRI = Object.assign(registryItem, {userRegistered: req.body.userRegistered })
-        updatedRI.save()
-            .then(registryItem => {
-                res.status(200).json(registryItem);
-            }).catch(err => {
-                res.status(400).send('Failed to create new record');
-            })
+        RegistryItem.findOneAndUpdate({ _id: req.body._id}, req.body, (err, registryItem) => {
+            if (err)
+                res.json(err)
+            else
+                res.json(registryItem);
+        })
     })
 });
 
@@ -137,6 +137,7 @@ router.route('/api/categories/add').post((req, res) => {
     category.save()
         .then(category => {
             res.status(200).json({'category': 'Added successfully'});
+            console.log(category);
         })
         .catch(err => {
             res.status(400).send('Failed to create new record');

@@ -11,7 +11,7 @@ import { AuthenticationService, UserDetails } from '../authentication-service.se
 })
 export class RegistryItemListComponent implements OnInit {
 
-  groupedRegistryItems: RegistryItem[];
+  groupedRegistryItems: RegistryItem[][];
   userDetails: UserDetails;
 
   constructor(
@@ -42,9 +42,18 @@ export class RegistryItemListComponent implements OnInit {
   }
 
   userRegistered($event) {
-    var objectToUpdate;
-    objectToUpdate = this.groupedRegistryItems.find(x => x._id === $event._id)
-    objectToUpdate.userRegistered = $event.userRegistered;
+    console.log($event);
+    console.log(this.groupedRegistryItems);
+    this.groupedRegistryItems.forEach((array) => {
+      array.forEach((registryItem) => {
+        if (registryItem._id === $event._id) {
+          var clonedRI = { ...registryItem};
+          clonedRI.userRegistered = $event.userRegistered;
+          registryItem = clonedRI;
+          console.log(registryItem);
+        }
+      })
+    })
   }
 
   getUserDetails() {
