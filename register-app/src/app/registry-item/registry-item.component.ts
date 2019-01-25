@@ -16,14 +16,20 @@ export class RegistryItemComponent implements OnInit {
   @Input() registryItem: RegistryItem;
   @Output() userRegistered = new EventEmitter();
   userDetails: UserDetails;
+  isBusy: boolean;
+  err: string;
 
   updateUserRegistered() {
+    this.isBusy = true;
     var newRegistryItem = cloneDeep(this.registryItem);
     newRegistryItem.userRegistered = this.registryItem.userRegistered ? null : this.userDetails.name;
-    console.log(newRegistryItem);
     this.registryItemService.updateRegistryItem(newRegistryItem).subscribe(registryItem => {
-      console.log(registryItem);
       this.userRegistered.emit(registryItem);
+      this.isBusy = false;
+    },
+    (err) => {
+      this.isBusy = false;
+      this.err = err;
     })
   }
 

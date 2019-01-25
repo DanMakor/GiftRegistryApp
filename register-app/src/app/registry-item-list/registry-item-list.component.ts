@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { groupBy } from 'lodash';
+import { groupBy, cloneDeep } from 'lodash';
 import { RegistryItem } from '../registry-item';
 import { RegistryItemService } from '../registry-item.service';
 import { AuthenticationService, UserDetails } from '../authentication-service.service';
@@ -42,18 +42,15 @@ export class RegistryItemListComponent implements OnInit {
   }
 
   userRegistered($event) {
-    console.log($event);
-    console.log(this.groupedRegistryItems);
-    this.groupedRegistryItems.forEach((array) => {
+    var gRICopy = cloneDeep(this.groupedRegistryItems);
+    gRICopy.forEach((array) => {
       array.forEach((registryItem) => {
         if (registryItem._id === $event._id) {
-          var clonedRI = { ...registryItem};
-          clonedRI.userRegistered = $event.userRegistered;
-          registryItem = clonedRI;
-          console.log(registryItem);
+          registryItem.userRegistered = $event.userRegistered;
         }
       })
     })
+    this.groupedRegistryItems = gRICopy;
   }
 
   getUserDetails() {

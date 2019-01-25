@@ -10,7 +10,7 @@ import { AuthguardService } from './authguard.service';
 const routes: Routes = [
   { path: "", redirectTo: "/register", pathMatch: "full" },
   { path: "registryitem", component: RegistryItemFormComponent, canActivate: [AuthguardService] },
-  { path: "registryitemlist", component: RegistryItemListComponent, canActivate: [AuthguardService] },
+  { path: "registryitemlist", component: RegistryItemListComponent },
   { path: "register", component: RegisterComponent },
   { path: "login", component: LoginComponent },
   { path: "logout", component: LogoutComponent, canActivate: [AuthguardService] }

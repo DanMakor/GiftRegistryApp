@@ -22,7 +22,8 @@ var auth = jwt({
 const app = express();
 export const router = express.Router();
 const corsOptions = {
-    origin: "http://annekeanddaniels.s3-website-ap-southeast-2.amazonaws.com",
+    origin: "121.45.203.200",
+    // origin: "http://annekeanddaniels.s3-website-ap-southeast-2.amazonaws.com",
     optionsSuccessStatus: 200
 }
 
