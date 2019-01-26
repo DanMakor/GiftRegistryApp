@@ -1,17 +1,21 @@
 
     <h1 class="mb-1 mt-5">Registry Item List</h1>
     <div class="mb-5">
-        <span class="badge-danger badge badge-pill mr-1">1</span> High
-        <span class="badge-warning badge badge-pill ml-2 mr-1">2</span> Moderate
+        <span class="badge-danger badge badge-pill mr-1">1</span> Essential
+        <span class="badge-warning badge badge-pill ml-2 mr-1">2</span> Not so essential but would like
     </div>
 
-    <div class="col-md-6" *ngFor="let registryItems of groupedRegistryItems; index as i">
-        <ul class="list-group mt-3">
-            <label class="list-item btn btn-light p-3 rounded-0 mb-0" data-toggle="collapse" attr.data-target="#registryItemsCollapse-{{i}}" role="button" aria-expanded="false" aria-controls="registryItemsCollapse">
-                    {{ registryItems[0].category.title }} <span class="badge badge-dark">{{ registryItems.length }}</span>
-            </label>
-            <div class="collapse show" id="registryItemsCollapse-{{i}}">
-                <app-registry-item *ngFor="let registryItem of registryItems" [ngClass]="{'disabled bg-light':registryItem.userRegistered && registryItem.userRegistered !== userDetails.name }" class="list-group-item justify-content-between d-flex align-items-center rounded-0" (userRegistered)="userRegistered($event)" [registryItem]="registryItem"></app-registry-item>
-            </div>
-        </ul>
-    </div>
+    <div class="row">
+        <div class="card-columns">
+            <ng-container *ngFor="let registryItems of groupedRegistryItems; index as i">
+                    <ul class="list-group mt-3">
+                        <label class="list-item text-center hdr bg-light p-3 rounded-0 mb-0" >
+                                {{ registryItems[0].category.title }} <span class="badge badge-dark">{{ registryItems.length }}</span>
+                        </label>
+                        <div>
+                            <app-registry-item *ngFor="let registryItem of registryItems" [ngClass]="{'disabled bg-light':registryItem.userRegistered && registryItem.userRegistered !== userDetails.name }" class="list-group-item justify-content-between d-flex align-items-center rounded-0" (userRegistered)="userRegistered($event)" [registryItem]="registryItem"></app-registry-item>
+                        </div>
+                    </ul>
+            </ng-container>
+        </div>
+    </div>  

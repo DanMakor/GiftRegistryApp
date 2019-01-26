@@ -11,7 +11,7 @@ import User from './models/User';
 import Category from './models/Category';
 
 const html = __dirname + '/dist';
-const APP_KEY = "AandDRegistry";
+const APP_KEY = "AndDRegistry";
 const API_URL = "/api"
 
 var auth = jwt({
@@ -22,8 +22,7 @@ var auth = jwt({
 const app = express();
 export const router = express.Router();
 const corsOptions = {
-    origin: "121.45.203.200",
-    // origin: "http://annekeanddaniels.s3-website-ap-southeast-2.amazonaws.com",
+    origin: "http://annekeanddaniels.s3-website-ap-southeast-2.amazonaws.com",
     optionsSuccessStatus: 200
 }
 

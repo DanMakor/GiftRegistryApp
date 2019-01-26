@@ -1,9 +1,30 @@
-label.btn {
+label {
+    width: 100%;
+}
+
+label.hdr {
     border-top: 1px solid rgba(0,0,0,.125);
     border-right: 1px solid rgba(0,0,0,.125);
     border-left: 1px solid rgba(0,0,0,.125);
 }
 
-label.btn.collapsed {
-    border-bottom: 1px solid rgba(0,0,0,.125);
+.list-group {
+    width: 100%;
+    display: inline-block;
+}
+
+@media (max-width: 768px) {
+    .card-columns {
+        -webkit-column-count: 1;
+        -moz-column-count: 1;
+        column-count: 1;
+    }
+}
+
+@media (min-width: 769px) {
+    .card-columns {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+    }
 }

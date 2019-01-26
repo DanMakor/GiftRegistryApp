@@ -1,0 +1,13 @@
+#kylie {
+    color: red;
+    animation-name: changeColour;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes changeColour {
+    0% {color: #f062bc;}
+    25% {color: #1ee270;}
+    50% {color: #ffee00;}
+    100% {color: #6ec9fd;}
+}

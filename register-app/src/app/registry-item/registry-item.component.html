@@ -1,8 +1,8 @@
 <span [ngClass]="{'badge-danger': registryItem.priority === 1, 'badge-warning': registryItem.priority === 2,'badge-success': registryItem.priority === 3, 'badge-dark': registryItem.userRegistered && registryItem.userRegistered !== userDetails.name }" class="badge badge-pill mr-3">{{ registryItem.priority }}</span>
 <h6 class="mb-0">{{ registryItem.title }}</h6>
 <p class="ml-3 mb-0">{{ registryItem.description }}</p>
-<button class="btn btn-success ml-auto" (click)="updateUserRegistered()" *ngIf="!isBusy && !registryItem.userRegistered">I'll get this</button>
-<button class="btn btn-danger ml-auto" (click)="updateUserRegistered()" *ngIf="!isBusy && registryItem.userRegistered && registryItem.userRegistered === userDetails.name">I won't get this</button>
-<button class="btn btn-secondary ml-auto" [disabled]="true" *ngIf="registryItem.userRegistered && registryItem.userRegistered !== userDetails.name">Too late :(</button>
-<i class="fas fa-spin fa-circle-notch" *ngIf="isBusy"></i>
+<button class="btn btn-sm btn-success ml-auto" (click)="updateUserRegistered()" *ngIf="!isBusy && !registryItem.userRegistered">I'll get this</button>
+<button class="btn btn-sm btn-danger ml-auto" (click)="updateUserRegistered()" *ngIf="!isBusy && registryItem.userRegistered && registryItem.userRegistered === userDetails.name">I won't get this</button>
+<button class="btn btn-sm btn-secondary ml-auto" [disabled]="true" *ngIf="registryItem.userRegistered && registryItem.userRegistered !== userDetails.name">Too late :(</button>
+<i class="fas fa-spin fa-circle-notch ml-auto mr-4point5" *ngIf="isBusy"></i>
 <p *ngIf="err" class="alert alert-danger">{{ err }}</p>

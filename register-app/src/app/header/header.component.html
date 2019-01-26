@@ -1,7 +1,22 @@
-<div class="navbar navbar-dark bg-dark">
+<div *ngIf="userDetails" [ngClass]="{ 'bg-light border-bottom': userDetails.name === 'Kylie', 'bg-dark': userDetails.name !== 'Kylie' }" class="navbar navbar-dark bg-dark">
   <div class="container d-flex justify-content-between">
     <div class="navbar-text text-right">
-        <h3 class="mb-0" *ngIf="userDetails">{{ userDetails.name }}</h3>
+        <div *ngIf="userDetails">
+          <h3 class="mb-0" *ngIf="userDetails.name !== 'Kylie'">{{ userDetails.name }}</h3>
+          <span id="kylie" *ngIf="userDetails.name === 'Kylie'">
+            <span class="badge badge-warning">Ur cool</span>
+            <i class="ml-1 mr-1 fas fa-spin fa-circle-notch"></i>
+            <span class="badge badge-success">Hi Kylie</span>
+              <h3 class="mb-0">
+                <i class="ml-1 fas fa-spin fa-spinner"></i>
+                {{ userDetails.name }}
+                <i class="ml-1 fas fa-spin fa-spinner"></i>
+              </h3>
+            <span class="badge badge-danger">U Rock</span>
+            <i class="ml-1 mr-1 fas fa-spin fa-circle-notch"></i>
+            <span class="badge badge-primary">Hi-five</span>
+          </span>
+        </div>
     </div>
     <a *ngIf="userDetails" class="btn btn-light" data-toggle="modal" data-target="#logoutModal">Logout</a>
   </div>
