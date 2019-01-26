@@ -21,8 +21,15 @@ var auth = jwt({
 
 const app = express();
 export const router = express.Router();
+var whitelist = ["http://www.annekeanddaniels.xyz", "http://annekeanddaniels.s3-website-ap-southeast-2.amazonaws.com", "http://www.annekeanddaniels.xyz.s3-website-ap-southeast-2.amazonaws.com"]
 const corsOptions = {
-    origin: "http://www.annekeanddaniels.xyz",
+    origin: function(origin, callback) {
+        if (whitelist.indexOf(origin) !== -1) {
+            callback(null, true)
+        } else {
+            callback(new Error('Not allowed by CORS'))
+        }
+    },
     optionsSuccessStatus: 200
 }
 
