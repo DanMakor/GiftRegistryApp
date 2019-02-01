@@ -6,8 +6,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { AuthenticationService } from './authentication-service.service';
 import { Category } from './category';
 
-const apiUrl: string = "http://ec2-52-14-82-165.us-east-2.compute.amazonaws.com/api/";
-// const apiUrl: string = "http://localhost:3000/api/";
+// const apiUrl: string = "http://ec2-52-14-82-165.us-east-2.compute.amazonaws.com/api/";
+const apiUrl: string = "http://localhost:3000/api/";
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -41,7 +41,7 @@ export class RegistryItemService {
   }
 
   updateRegistryItem(registerItem: RegistryItem): Observable<RegistryItem> {
-    return this.http.put<RegistryItem>(apiUrl + "registry-items/update", registerItem, httpOptions);
+    return this.http.put<RegistryItem>(apiUrl + "registry-items/update", registerItem, { headers: { Authorization: `Bearer ${this.authenticationService.getToken()}` }});
   }
 }
 

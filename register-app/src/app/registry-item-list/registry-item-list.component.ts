@@ -3,6 +3,9 @@ import { groupBy, cloneDeep } from 'lodash';
 import { RegistryItem } from '../registry-item';
 import { RegistryItemService } from '../registry-item.service';
 import { AuthenticationService, UserDetails } from '../authentication-service.service';
+import * as $ from 'jquery';
+import 'popper.js';
+import 'bootstrap';
 
 @Component({
   selector: 'app-register-item-list',
@@ -13,6 +16,8 @@ export class RegistryItemListComponent implements OnInit {
 
   groupedRegistryItems: RegistryItem[][];
   userDetails: UserDetails;
+  toastText: string;
+  toastHeaderText: string;
 
   constructor(
     private registerItemService: RegistryItemService, 
@@ -51,6 +56,15 @@ export class RegistryItemListComponent implements OnInit {
       })
     })
     this.groupedRegistryItems = gRICopy;
+    if ($event.userRegistered) {
+      this.toastText = `You have successfully registered to get us ${$event.title}`
+      this.toastHeaderText = "Thanks!"
+    } else {
+      this.toastText = `You are no longer registered to get us ${$event.title}`
+      this.toastHeaderText = "Unthanks"
+    }
+    
+    $('.toast').toast('show');
   }
 
   getUserDetails() {

@@ -17,7 +17,7 @@ export class RegistryItemComponent implements OnInit {
   @Output() userRegistered = new EventEmitter();
   userDetails: UserDetails;
   isBusy: boolean;
-  err: string;
+  error: string;
 
   updateUserRegistered() {
     this.isBusy = true;
@@ -29,7 +29,7 @@ export class RegistryItemComponent implements OnInit {
     },
     (err) => {
       this.isBusy = false;
-      this.err = err;
+      this.error = err.error;
     })
   }
 

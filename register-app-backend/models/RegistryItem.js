@@ -8,7 +8,7 @@ var registryItem = new Schema({
         type: String
     },
     userRegistered: {
-        name: String
+        type: String
     },
     priority: {
         type: Number

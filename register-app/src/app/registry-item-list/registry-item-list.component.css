@@ -28,3 +28,7 @@ label.hdr {
         column-count: 2;
     }
 }
+
+.toast {
+    background-color: white;
+}

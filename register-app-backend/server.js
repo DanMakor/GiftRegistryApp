@@ -21,7 +21,7 @@ var auth = jwt({
 
 const app = express();
 export const router = express.Router();
-var whitelist = ["http://www.annekeanddaniels.xyz", "http://annekeanddaniels.s3-website-ap-southeast-2.amazonaws.com", "http://www.annekeanddaniels.xyz.s3-website-ap-southeast-2.amazonaws.com"]
+var whitelist = ["http://localhost:4200", "http://www.annekeanddaniels.xyz", "http://annekeanddaniels.s3-website-ap-southeast-2.amazonaws.com", "http://www.annekeanddaniels.xyz.s3-website-ap-southeast-2.amazonaws.com"]
 const corsOptions = {
     origin: function(origin, callback) {
         if (whitelist.indexOf(origin) !== -1) {
@@ -58,10 +58,10 @@ router.route('/api/registry-items/add').post((req, res) => {
         });
 });
 
-router.route('/api/registry-items/update').put((req, res) => {
+router.route('/api/registry-items/update').put(auth, (req, res) => {
     RegistryItem.findOne({_id: req.body._id}, (err, registryItem) => {
-        if (registryItem.userRegistered === null) {
-            res.json('A user has already registered this item');
+        if (registryItem.userRegistered && registryItem.userRegistered !== req.payload.name) {
+            res.status(500).json('A user has already registered this item');
             return;
         }
         RegistryItem.findOneAndUpdate({ _id: req.body._id}, req.body, {new: true}, (err, updatedRegistryItem) => {

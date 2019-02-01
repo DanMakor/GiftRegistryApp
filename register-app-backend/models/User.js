@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
 
 var userSchema = new mongoose.Schema({

@@ -4,8 +4,8 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
-const apiUrl: string = "http://ec2-52-14-82-165.us-east-2.compute.amazonaws.com/api/";
-// const apiUrl: string = "http://localhost:3000/api/";
+// const apiUrl: string = "http://ec2-52-14-82-165.us-east-2.compute.amazonaws.com/api/";
+const apiUrl: string = "http://localhost:3000/api/";
 
 
 export interface UserDetails {
